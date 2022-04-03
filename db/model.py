@@ -74,7 +74,7 @@ class Article(Base):
 
     id = Column(Integer, primary_key=True)
     title = Column(String(200), nullable=False, unique=True)
-    content = Column(Text, nullable=False, unique=True)
+    content = Column(Text, nullable=False)
     publication_date = Column(DateTime, nullable=False, default=datetime.now)
 
     author_id = Column(Integer, nullable=False)
