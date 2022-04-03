@@ -1,9 +1,9 @@
 from datetime import datetime
 
 from faker import Faker
-from sqlalchemy import Column, String, Integer, DateTime, Text
+from sqlalchemy import Column, String, Integer, DateTime, Text, ForeignKey
 from sqlalchemy.exc import IntegrityError
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
 
@@ -16,6 +16,8 @@ class User(Base):
     last_name = Column(String(100), nullable=False)
     email = Column(String(100), unique=True, nullable=False)
     reg_date = Column(DateTime, nullable=False, default=datetime.now)
+
+    articles = relationship("Article", back_populates="author")
 
     def __repr__(self):
         return f"User({self.id}, {self.first_name}, {self.last_name}, {self.email})"
@@ -48,6 +50,8 @@ class Hashtag(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False, unique=True)
 
+    # articles =
+
     def __repr__(self):
         return f"Hashtag({self.id}, {self.name})"
 
@@ -77,4 +81,10 @@ class Article(Base):
     content = Column(Text, nullable=False)
     publication_date = Column(DateTime, nullable=False, default=datetime.now)
 
-    author_id = Column(Integer, nullable=False)
+    author_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+
+    author = relationship(User, back_populates="articles")
+    # hashtags =
+
+    def __repr__(self):
+        return f"Article({self.id}, {self.title})"
