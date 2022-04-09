@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from faker import Faker
-from sqlalchemy import Column, String, Integer, DateTime, Text, ForeignKey
+from sqlalchemy import Column, String, Integer, DateTime, Text, ForeignKey, Float
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import declarative_base, relationship
 
@@ -110,3 +110,14 @@ class ArticleHashtag(Base):
 
     article_id = Column(Integer, ForeignKey("articles.id"), primary_key=True)
     hashtag_id = Column(Integer, ForeignKey("hashtags.id"), primary_key=True)
+
+
+class Subscription(Base):
+    __tablename__ = "subscriptions"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50), nullable=False, unique=True)
+    price = Column(Float, nullable=False, default=0.0)
+
+    def __repr__(self):
+        return f"Subscription({self.id}, {self.price})"
