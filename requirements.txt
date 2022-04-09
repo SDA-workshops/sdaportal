@@ -1,6 +1,8 @@
 appnope==0.1.2
 asttokens==2.0.5
 backcall==0.2.0
+cffi==1.15.0
+cryptography==36.0.2
 decorator==5.1.1
 executing==0.8.3
 Faker==13.3.4
@@ -14,6 +16,7 @@ pickleshare==0.7.5
 prompt-toolkit==3.0.28
 ptyprocess==0.7.0
 pure-eval==0.2.2
+pycparser==2.21
 Pygments==2.11.2
 PyMySQL==1.0.2
 python-dateutil==2.8.2
