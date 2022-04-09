@@ -34,6 +34,14 @@ class User(Base):
             email=fake.email()
         )
 
+    def create_fake_article(self):
+        fake = Faker()
+        return Article(
+            author_id=self.id,
+            title=fake.paragraph(nb_sentences=1),
+            content=fake.paragraph(nb_sentences=100)
+        )
+
 
 def create_fake_users(session, count=100):
     users_generated = 0
@@ -86,7 +94,7 @@ class Article(Base):
     content = Column(Text, nullable=False)
     publication_date = Column(DateTime, nullable=False, default=datetime.now)
 
-    author_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    author_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
     author = relationship(User, back_populates="articles")
     hashtags = relationship(
