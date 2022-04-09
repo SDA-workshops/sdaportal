@@ -15,9 +15,6 @@ from db.session import Session
 if __name__ == "__main__":
     session = Session()
 
-    print("Create db tables...")
-    Base.metadata.create_all(session.get_bind())
-
     print("Creating fake users...")
     create_fake_users(session)
 
