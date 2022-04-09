@@ -1,1 +1,1 @@
-# SQAlachemy SDA workshop
+# SQlAlchemy SDA workshop
